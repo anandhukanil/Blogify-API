@@ -1,0 +1,53 @@
+{
+  "name": "blogify-api",
+  "version": "1.0.0",
+  "description": "A RESTful API server built with Node.js and Express.js that provides endpoints for creating, reading, updating, and deleting blog posts.",
+  "main": "app.js",
+  "engines": {
+    "node": ">= 18.12 <19"
+  },
+  "scripts": {
+    "start": "node dist/app.js",
+    "dev": "nodemon",
+    "lint": "eslint src/**/*.ts",
+    "lint-fix": "eslint --fix src/**/*.ts",
+    "pretty": "prettier --write 'src/**/*.ts'",
+    "prepare": "husky install",
+    "precommit": "npm run lint-fix && npm run pretty",
+    "prepush": "npm run lint",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anandhukanil/Blogify-API.git"
+  },
+  "keywords": [
+    "API",
+    "Blogs"
+  ],
+  "author": {
+    "name": "Anandhu K Anil",
+    "email": "anandhukanil@gmail.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/anandhukanil/Blogify-API/issues"
+  },
+  "homepage": "https://github.com/anandhukanil/Blogify-API#readme",
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@typescript-eslint/eslint-plugin": "^5.58.0",
+    "@typescript-eslint/parser": "^5.58.0",
+    "eslint": "^8.38.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.3",
+    "nodemon": "^2.0.22",
+    "prettier": "^2.8.7",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
