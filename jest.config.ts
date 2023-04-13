@@ -6,7 +6,7 @@
 export default {
   clearMocks: true,
   roots: [
-    "<rootDir>/src"
+    "<rootDir>/test"
   ],
   testEnvironment: "node",
   preset: "ts-jest"
