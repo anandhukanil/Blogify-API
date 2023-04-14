@@ -1,13 +1,19 @@
-import express, { Application, Request, Response } from "express";
+import express from "express";
+import errorHandler from "./common/errorHandler";
+import router from "./routes";
+import { config } from "dotenv";
 
-// Boot express
-const app: Application = express();
-const port = 3000;
+config();
+const app = express();
+const port = process.env.PORT;
+
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 // Application routing
-app.use("/", (req: Request, res: Response) => {
-  res.status(200).send({data: "Hello World"});
-});
+app.use(router);
+// Error Handler
+app.use(errorHandler);
 
 // Start server
 app.listen(port, () => console.log(`Server is listening on port ${port}!`));

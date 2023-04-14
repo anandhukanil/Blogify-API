@@ -6,6 +6,6 @@ describe("Test App", () => {
     const result = await request(app).get("/").send();
 
     expect(result.status).toBe(200);
-    expect(result.body.data).toBe("Hello World");
+    expect(result.body.data).toBe("Hello World!");
   });
 });
