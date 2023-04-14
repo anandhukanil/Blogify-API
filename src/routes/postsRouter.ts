@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getAllPostsController } from "../controllers/postsController";
+import { getAllPostsController, getPostController } from "../controllers/postsController";
 
 const router = Router();
 
@@ -10,7 +10,7 @@ router.get("/", getAllPostsController);
 router.post("/", getAllPostsController);
 
 // get a single blog post by id
-router.get("/:id", getAllPostsController);
+router.get("/:id", getPostController);
 
 // update a blog post by id
 router.put("/:id", getAllPostsController);

@@ -1,11 +1,16 @@
-import express from "express";
+import express, { Express } from "express";
 import errorHandler from "./common/errorHandler";
 import router from "./routes";
 import { config } from "dotenv";
+import dbInitializer from "./common/dbInitializer";
 
 config();
-const app = express();
+// Initialize mongodb database
+dbInitializer();
+
 const port = process.env.PORT;
+
+const app: Express = express();
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
