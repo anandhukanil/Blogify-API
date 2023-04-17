@@ -13,7 +13,7 @@ export interface IComment {
   date: string;
 }
 
-export interface IPosts {
+export interface IPost {
   id: string;
   title: string;
   authorId: string;

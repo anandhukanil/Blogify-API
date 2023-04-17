@@ -8,6 +8,13 @@ const commentSchema = new Schema<IComment>({
   content: { type: String, required: true },
   date: Date,
   author: userSchema,
+}, {
+  toJSON: {
+    transform: (doc, converted) => {
+      converted.id = converted._id?.toString();
+      // converted.author = doc.
+    }
+  }
 });
 
 export default commentSchema;

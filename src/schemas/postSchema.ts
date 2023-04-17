@@ -1,10 +1,10 @@
 import { Schema } from "mongoose";
-import { IPosts } from "../types";
+import { IPost } from "../types";
 import userSchema from "./userSchema";
 import commentSchema from "./commentSchema";
 
 
-const postSchema = new Schema<IPosts>({
+const postSchema = new Schema<IPost>({
   title: { type: String, required: true },
   content: { type: String, required: true },
   category: { type: String, required: true },
@@ -19,6 +19,13 @@ const postSchema = new Schema<IPosts>({
     views: Number,
     likes: Number,
     shares: Number,
+  },
+}, {
+  toJSON: {
+    transform: (doc, converted) => {
+      converted.id = converted._id?.toString();
+      // converted.author = doc.
+    }
   }
 });
 
