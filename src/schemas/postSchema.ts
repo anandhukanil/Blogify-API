@@ -1,16 +1,14 @@
 import { Schema } from "mongoose";
 import { IPost } from "../types";
 import userSchema from "./userSchema";
-import commentSchema from "./commentSchema";
 
 
 const postSchema = new Schema<IPost>({
-  title: { type: String, required: true },
-  content: { type: String, required: true },
-  category: { type: String, required: true },
-  authorId: { type: String, required: true },
+  title: { type: String, required: [true, "title is required!"] },
+  content: { type: String, required: [true, "content is required!"] },
+  category: { type: String, required: [true, "category is required!"] },
+  authorId: { type: String, required: [true, "authorId is required!"] },
   author: userSchema,
-  comments: commentSchema,
   date: Date,
   image: String,
   isPublished: Boolean,
@@ -22,9 +20,9 @@ const postSchema = new Schema<IPost>({
   },
 }, {
   toJSON: {
-    transform: (doc, converted) => {
+    transform: (doc, converted, x) => {
       converted.id = converted._id?.toString();
-      // converted.author = doc.
+      delete converted._id;
     }
   }
 });

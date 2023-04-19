@@ -1,4 +1,5 @@
 import express, { Express } from "express";
+import path from "path";
 import errorHandler from "./common/errorHandler";
 import router from "./routes";
 import { config } from "dotenv";
@@ -14,6 +15,8 @@ const app: Express = express();
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
 
 // Application routing
 app.use(router);

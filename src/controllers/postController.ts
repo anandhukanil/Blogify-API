@@ -1,6 +1,6 @@
 import { RequestHandler } from "express";
 import PostModel from "../models/postModel";
-import { IPost } from "../types";
+import { IPost, Models } from "../types";
 import { SortOrder } from "mongoose";
 
 // get all Posts
@@ -10,8 +10,21 @@ export const getAllPostsController: RequestHandler = async (req, res) => {
   try {
     if (limit && Number(limit)) {
       const sort: string[] = (sortBy as string)?.split(":");
-      const data = await PostModel.find()
-        .sort(sort && { [sort[0]]: sort[1]} as { [x: string]: SortOrder })
+      const data = await PostModel.aggregate([
+        { $lookup:
+            {
+              from: Models.User,
+              localField: "authorId",
+              foreignField: "_id",
+              as: "author"
+            }
+        },
+        { $unwind: "$author" },
+        { $addFields: { "id": {  $toString: "$_id" } } }
+      ])
+        .sort(sort
+          ? { [sort[0]]: sort[1] } as { [x: string]: SortOrder }
+          : { _id: "asc" })
         .limit(Number(limit))
         .skip((Number(page) - 1) * Number(limit))
         .exec();
@@ -25,7 +38,18 @@ export const getAllPostsController: RequestHandler = async (req, res) => {
       });
       return;
     }
-    const data = await PostModel.find();
+    const data = await PostModel.aggregate([
+      { $lookup:
+          {
+            from: Models.User,
+            localField: "authorId",
+            foreignField: "_id",
+            as: "author"
+          }
+      },
+      { $unwind: "$author" },
+      { $addFields: { "id": {  $toString: "$_id" } } }
+    ]);
 
     res.json({ posts: data });
   } catch (error) {

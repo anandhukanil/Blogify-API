@@ -12,7 +12,7 @@ const commentSchema = new Schema<IComment>({
   toJSON: {
     transform: (doc, converted) => {
       converted.id = converted._id?.toString();
-      // converted.author = doc.
+      delete converted._id;
     }
   }
 });

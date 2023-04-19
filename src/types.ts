@@ -21,7 +21,6 @@ export interface IPost {
   content: string;
   tags: string[];
   date: string;
-  comments: IComment[];
   image: string;
   category: string;
   isPublished: boolean;
@@ -33,7 +32,14 @@ export interface IPost {
 }
 
 export enum Models {
-  User = "user",
-  Comment = "comment",
-  Post = "post"
+  User = "users",
+  Comment = "comments",
+  Post = "posts",
+  APIKey = "apiKeys"
+}
+
+export interface IAPIKey {
+  token: string;
+  name: string;
+  email: string;
 }

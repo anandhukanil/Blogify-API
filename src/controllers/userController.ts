@@ -36,6 +36,11 @@ export const createUserController: RequestHandler = async (req, res) => {
   const { data }: {data: IUser} = req.body;
   
   try {
+    const userExists = await UserModel.findOne({ email: data.email });
+    if (userExists?.toJSON()) {
+      res.status(409).send(`User with email "${data.email}" already exists`);
+      return;
+    }
     const response = await UserModel.create(data);
 
     if (!response?.toJSON()) {

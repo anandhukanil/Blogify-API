@@ -8,7 +8,7 @@ const userSchema = new Schema<IUser>({
   toJSON: {
     transform: (doc, converted) => {
       converted.id = converted._id?.toString();
-      // converted.author = doc.
+      delete converted._id;
     }
   }
 });

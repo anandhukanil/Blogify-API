@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Blogify API</title>
+
+    <!-- CSS link (loading Semantic UI from a CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+      body { padding:50px; }
+    </style>
+  </head>
+  <body class="container">
+    <%- include('./partials/header'); %>
+    <main>
+      <div class="ui segment">
+        <h1 class="ui center aligned icon header">
+          <i class="bold icon"></i>
+          Welcome to Blogify API
+        </h1>
+        <div class="ui segment">
+          <div class="ui feed">
+            <div class="event">
+              <div class="label">
+                <img src="https://0.gravatar.com/avatar/453ace05a56a7d28376338a5040cc977?size=128">
+            </div>
+            <div class="content">
+              <div class="summary">
+                <a href="https://in.linkedin.com/in/anandhukanil" target="_blank">Anandhu K Anil</a> created <a>Blogify</a>
+                <div class="date">
+                  19 Apr 2023
+                </div>
+              </div>
+              <div class="extra text">
+                <!-- A dummy api server for your blog site -->
+                Blogify-API is a RESTful API server built with Node.js and Express.js that provides endpoints for creating, reading, updating, and deleting blog posts.
+                <br/><br/>The API is secured with JWT authentication and uses MongoDB as the data store.
+                <br/><br/>It includes features such as search, pagination, and sorting to make it easier for clients to consume the data.
+              </div>
+              <div class="meta">
+                <a class="like" href="https://github.com/anandhukanil/Blogify-API.git" target="_blank">
+                  Get the source code on <i class="github icon"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+            <% if(apiKey){ %>
+              <div class="ui icon message">
+                <i class="key icon"></i>
+                <div class="content">
+                  <div class="header">
+                    Copy the below token and use it as authentication token.
+                  </div>
+                  <p><%= apiKey %></p>
+                </div>
+              </div>
+              <% } else{ %>
+                <h3 class="ui header">
+                  <i class="user plus icon"></i>
+                  <div class="content">
+                    Register for an API token
+                  </div>
+                </h3>
+                <form class="ui form" action="/register" method="post" name="regForm">
+                  <div class="field">
+                    <label>Full Name</label>
+                    <input type="text" name="name" placeholder="Full Name" required>
+                  </div>
+                  <div class="field">
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="someone@example.com" required>
+                  </div>
+                  <button class="ui button" type="submit">Submit</button>
+                </form> 
+           <% } %>
+           <% if(errorMessage){ %>
+            <div class="ui negative message transition">
+             <div class="header">
+               <p><%= errorMessage %></p>
+              </div>
+              <p>Please use the <b>Token</b> that is already generated.</p>
+            </div>
+           <% } %>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <%- include('./partials/footer'); %>
+    </footer>
+  </body> 
+</html>
