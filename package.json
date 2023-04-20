@@ -7,7 +7,7 @@
     "node": ">= 18.12 <19"
   },
   "scripts": {
-    "start": "node dist/app.js",
+    "start": "node dist/src/app.js",
     "build": "npm run clean && tsc && npm run copy-files",
     "clean": "rm -rf ./dist",
     "copy-files": "cp -r ./src/views/ ./dist/src",
