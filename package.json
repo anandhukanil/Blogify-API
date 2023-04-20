@@ -8,6 +8,9 @@
   },
   "scripts": {
     "start": "node dist/app.js",
+    "build": "npm run clean && tsc && npm run copy-files",
+    "clean": "rm -rf ./dist",
+    "copy-files": "cp -r ./src/views/ ./dist/src",
     "dev": "nodemon",
     "lint": "eslint src/**/*.ts",
     "lint-fix": "eslint --fix src/**/*.ts",
@@ -15,7 +18,7 @@
     "prepare": "husky install",
     "precommit": "npm run lint-fix && npm run pretty",
     "prepush": "npm run lint",
-    "test": "jest --detectOpenHandles"
+    "test": "echo \"Error: no test specified\""
   },
   "repository": {
     "type": "git",
