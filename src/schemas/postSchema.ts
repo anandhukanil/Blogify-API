@@ -20,7 +20,7 @@ const postSchema = new Schema<IPost>({
   },
 }, {
   toJSON: {
-    transform: (doc, converted, x) => {
+    transform: (doc, converted) => {
       converted.id = converted._id?.toString();
       delete converted._id;
     }
